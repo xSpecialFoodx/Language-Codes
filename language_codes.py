@@ -664,11 +664,11 @@ def Initialize():
         Initialized = True
 
 
-def CheckLanguage(LanguageText: str) -> list:
+def CheckLanguages(LanguageText: str) -> list:
     """
     Description:
 
-        Checks the language in the languages object based on the language text
+        Checks the languages in the languages object based on the language text
 
     Parameters:
 
@@ -676,7 +676,7 @@ def CheckLanguage(LanguageText: str) -> list:
 
     Returns:
 
-        Returns the language in the languages object if found a suitable one (list type), otherwise returns None
+        Returns the languages in the languages object if found suitable ones (a list of those, which are also lists), otherwise returns None
     """
 
     # Global Variables
@@ -687,6 +687,7 @@ def CheckLanguage(LanguageText: str) -> list:
 
     # Function Variables
 
+    FixedLanguageTexts = None
     FixedLanguageText = None
 
     LanguagesItems = None
@@ -696,25 +697,37 @@ def CheckLanguage(LanguageText: str) -> list:
     FunctionResult = None
     CurrentResult = None
 
+    MethodFound = False
+
     # Start
 
     if Initialized is False:
         Initialize()
 
     if LanguageText is not None:
-        FixedLanguageText = unidecode(LanguageText).upper()
+        FixedLanguageTexts = [unidecode(LanguageText).upper()]
 
         LanguagesItems = Languages.items()
 
         for LanguagesItem in LanguagesItems:
             for Language in LanguagesItem[1]:
-                if FixedLanguageText == Language:
-                    CurrentResult = LanguagesItem[1]
+                for FixedLanguageText in FixedLanguageTexts:
+                    if FixedLanguageText == Language:
+                        MethodFound = True
+
+                        if CurrentResult is None:
+                            CurrentResult = []
+
+                        CurrentResult.append(LanguagesItem[1])
+
+                        FixedLanguageTexts += LanguagesItem[1]
+
+                        break
+
+                if MethodFound is True:
+                    MethodFound = False
 
                     break
-
-            if CurrentResult is not None:
-                break
 
     FunctionResult = CurrentResult
 
