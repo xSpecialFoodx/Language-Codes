@@ -715,3 +715,80 @@ def CheckLanguage(LanguageText: str) -> list:
     FunctionResult = CurrentResult
 
     return FunctionResult
+
+
+def CompareLanguages(FirstLanguage: list, SecondLanguage: list) -> bool:
+    """
+    Description:
+
+        Compares languages to see if they're the same (same language codes or names)
+
+    Parameters:
+
+        FirstLanguage: the first language (or languages) in the comparison
+        SecondLanguage: the second language (or languages) in the comparison
+
+    Returns:
+
+        returns True if the langauges are the same, False if they're not
+    """
+
+    # Function Variables
+
+    FunctionResult = None
+
+    FirstLanguageCell = None
+    FirstLanguageCellCell = None
+    SecondLanguageCell = None
+    SecondLanguageCellCell = None
+
+    MethodFound = False
+
+    # Start
+
+    if FirstLanguage == SecondLanguage:
+        MethodFound = True
+    else:
+        for FirstLanguageCell in FirstLanguage:
+            for SecondLanguageCell in SecondLanguage:
+                if isinstance(FirstLanguageCell, list) is True:
+                    for FirstLanguageCellCell in FirstLanguageCell:
+                        if isinstance(SecondLanguageCell, list) is True:
+                            for SecondLanguageCellCell in SecondLanguageCell:
+                                if FirstLanguageCellCell == SecondLanguageCellCell:
+                                    MethodFound = True
+
+                                    break
+
+                            if MethodFound is True:
+                                break
+                        else:
+                            if FirstLanguageCellCell == SecondLanguageCell:
+                                MethodFound = True
+
+                                break
+
+                    if MethodFound is True:
+                        break
+                else:
+                    if isinstance(SecondLanguageCell, list) is True:
+                        for SecondLanguageCellCell in SecondLanguageCell:
+                            if FirstLanguageCell == SecondLanguageCellCell:
+                                MethodFound = True
+
+                                break
+
+                        if MethodFound is True:
+                            break
+                    else:
+                        if FirstLanguageCell == SecondLanguageCell:
+                            MethodFound = True
+
+                            break
+
+            if MethodFound is True:
+                break
+
+    FunctionResult = MethodFound
+
+    return FunctionResult
