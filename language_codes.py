@@ -623,7 +623,7 @@ def Initialize():
 
     # Function Variables
 
-    SourceLists = []
+    SourceLists = None
     SourceList = None
     SourceListCellsAmount = None
     SourceListCell = None
@@ -631,32 +631,36 @@ def Initialize():
     TargetList = None
     TargetListCell = None
 
-    LanguagesItems = Languages.items()
+    LanguagesItems = None
     LanguagesItem = None
 
     # Start
 
-    for LanguagesItem in LanguagesItems:
-        SourceLists.append(LanguagesItem[1])
-
-    for SourceList in SourceLists:
-        SourceListCellsAmount = len(SourceList)
-
-        if SourceListCellsAmount > 0:
-            TargetList = []
-
-            for SourceListCell in SourceList:
-                TargetListCell = (
-                    (unidecode(SourceListCell).upper())
-                    if isinstance(SourceListCell, str) is True
-                    else SourceListCell
-                )
-
-                TargetList.append(TargetListCell)
-
-            ChangeList(SourceList, TargetList)
-
     if Initialized is False:
+        SourceLists = []
+
+        LanguagesItems = Languages.items()
+
+        for LanguagesItem in LanguagesItems:
+            SourceLists.append(LanguagesItem[1])
+
+        for SourceList in SourceLists:
+            SourceListCellsAmount = len(SourceList)
+
+            if SourceListCellsAmount > 0:
+                TargetList = []
+
+                for SourceListCell in SourceList:
+                    TargetListCell = (
+                        (unidecode(SourceListCell).upper())
+                        if isinstance(SourceListCell, str) is True
+                        else SourceListCell
+                    )
+
+                    TargetList.append(TargetListCell)
+
+                ChangeList(SourceList, TargetList)
+
         Initialized = True
 
 
