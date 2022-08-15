@@ -705,7 +705,9 @@ def CheckLanguages(LanguageText: str) -> list:
         Initialize()
 
     if LanguageText is not None:
-        FixedLanguageTexts = [unidecode(LanguageText).upper()]
+        FixedLanguageTexts = []
+
+        FixedLanguageTexts.append(unidecode(LanguageText).upper())
 
         LanguagesItems = Languages.items()
 
