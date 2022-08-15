@@ -676,7 +676,8 @@ def CheckLanguages(LanguageText: str) -> list:
 
     Returns:
 
-        Returns the languages in the languages object if found suitable ones (a list of those, which are also lists), otherwise returns None
+        Returns the languages in the languages object if found suitable ones (a list of those, which are also lists)
+        , otherwise returns None
     """
 
     # Global Variables
