@@ -672,7 +672,7 @@ def CheckLanguage(LanguageText: str) -> list:
 
     Returns:
 
-        returns the language in the languages object if found a suitable one (list type), otherwise returns None
+        Returns the language in the languages object if found a suitable one (list type), otherwise returns None
     """
 
     # Global Variables
@@ -730,7 +730,7 @@ def CompareLanguages(FirstLanguage: list, SecondLanguage: list) -> bool:
 
     Returns:
 
-        returns True if the langauges are the same, False if they're not
+        Returns True if the langauges are the same, False if they're not
     """
 
     # Function Variables
