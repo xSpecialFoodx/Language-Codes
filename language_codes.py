@@ -688,15 +688,17 @@ def CheckLanguages(LanguageText: str) -> list:
 
     # Function Variables
 
+    FunctionResult = None
+    CurrentResult = None
+
     FixedLanguageTexts = None
     FixedLanguageText = None
 
-    LanguagesItems = None
-    LanguagesItem = None
+    LanguagesValues = None
+    LanguagesValuesAmount = None
+    LanguagesValuesIndex = None
+    LanguagesValue = None
     Language = None
-
-    FunctionResult = None
-    CurrentResult = None
 
     MethodFound = False
 
@@ -710,27 +712,45 @@ def CheckLanguages(LanguageText: str) -> list:
 
         FixedLanguageTexts.append(unidecode(LanguageText).upper())
 
-        LanguagesItems = Languages.items()
+        LanguagesValues = list(Languages.values())
+        LanguagesValuesAmount = len(LanguagesValues)
+        LanguagesValuesIndex = 0
 
-        for LanguagesItem in LanguagesItems:
-            for Language in LanguagesItem[1]:
-                for FixedLanguageText in FixedLanguageTexts:
-                    if FixedLanguageText == Language:
-                        MethodFound = True
+        while LanguagesValuesIndex < LanguagesValuesAmount:
+            LanguagesValue = LanguagesValues[LanguagesValuesIndex]
 
-                        if CurrentResult is None:
-                            CurrentResult = []
+            if CurrentResult is None or (LanguagesValue in CurrentResult) is False:
+                for Language in LanguagesValue:
+                    for FixedLanguageText in FixedLanguageTexts:
+                        if FixedLanguageText == Language:
+                            MethodFound = True
 
-                        CurrentResult.append(LanguagesItem[1])
+                            if CurrentResult is None:
+                                CurrentResult = []
 
-                        FixedLanguageTexts += LanguagesItem[1]
+                            CurrentResult.append(LanguagesValue)
 
+                            FixedLanguageTexts += LanguagesValue
+
+                            break
+
+                    if MethodFound is True:
                         break
 
-                if MethodFound is True:
-                    MethodFound = False
+            if MethodFound is True:
+                MethodFound = False
 
-                    break
+                LanguagesValuesIndex = 0
+            else:
+                LanguagesValuesIndex += 1
+
+        if CurrentResult is not None:
+            CurrentResult = (
+                sorted(
+                    CurrentResult
+                    , key=lambda CurrentResultCell: LanguagesValues.index(CurrentResultCell)
+                )
+            )
 
     FunctionResult = CurrentResult
 
