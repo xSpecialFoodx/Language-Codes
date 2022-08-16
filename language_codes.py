@@ -612,7 +612,7 @@ def Initialize():
     """
     Description:
 
-        Initializing the "Languages" object
+        Initializing the "Languages" object (if its not initialized)
     """
 
     # Global Variables
@@ -631,18 +631,10 @@ def Initialize():
     TargetList = None
     TargetListCell = None
 
-    LanguagesItems = None
-    LanguagesItem = None
-
     # Start
 
     if Initialized is False:
-        SourceLists = []
-
-        LanguagesItems = Languages.items()
-
-        for LanguagesItem in LanguagesItems:
-            SourceLists.append(LanguagesItem[1])
+        SourceLists = list(Languages.values())
 
         for SourceList in SourceLists:
             SourceListCellsAmount = len(SourceList)
