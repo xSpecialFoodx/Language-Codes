@@ -27,7 +27,7 @@ if Language is not None:
   print("True" if CompareLanguages(Language, Languages["Alsatian"]) is True else "False")
 ```
 
-Which results in 3 prints:
+Which results in 4 prints:
 
 1: "True" -> the language is included in the first included languages set.
 
