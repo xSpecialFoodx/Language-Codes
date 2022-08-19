@@ -39,6 +39,6 @@ Which results in 3 prints:
 <br/><br/>
 
 
-In order to install the packages from the requirements text file check this other repo of mine:
+Included the file "requirements_installation.bat" to install the packages from the requirements text file, from this other repo of mine:
 
 https://github.com/xSpecialFoodx/Requirements-Manager
