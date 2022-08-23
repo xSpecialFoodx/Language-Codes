@@ -2,6 +2,12 @@
 Language codes as an object in python.
 <br/><br/>
 
+For language codes look at:
+
+    1: https://www.science.co.il/language/Codes.php
+    
+    2: https://www.loc.gov/standards/iso639-2/php/code_list.php
+
 An example of a usage:
 
 ```python
