@@ -588,10 +588,10 @@ def ChangeList(SourceList: list, TargetList: list):
 
     # Function Variables
 
-    SourceListCellsAmount = len(SourceList)
+    SourceListCellsAmount = len(SourceList) if SourceList is not None else 0
     SourceListCell = None
 
-    TargetListCellsAmount = len(TargetList)
+    TargetListCellsAmount = len(TargetList) if TargetList is not None else 0
     TargetListCell = None
 
     # Start
