@@ -768,18 +768,17 @@ def CompareLanguages(FirstLanguage: list, SecondLanguage: list) -> bool:
     # Function Variables
 
     FunctionResult = None
+    CurrentResult = False
 
     FirstLanguageCell = None
     FirstLanguageCellCell = None
     SecondLanguageCell = None
     SecondLanguageCellCell = None
 
-    MethodFound = False
-
     # Start
 
     if FirstLanguage == SecondLanguage:
-        MethodFound = True
+        CurrentResult = True
     else:
         for FirstLanguageCell in FirstLanguage:
             for SecondLanguageCell in SecondLanguage:
@@ -788,39 +787,39 @@ def CompareLanguages(FirstLanguage: list, SecondLanguage: list) -> bool:
                         if isinstance(SecondLanguageCell, list) is True:
                             for SecondLanguageCellCell in SecondLanguageCell:
                                 if FirstLanguageCellCell == SecondLanguageCellCell:
-                                    MethodFound = True
+                                    CurrentResult = True
 
                                     break
 
-                            if MethodFound is True:
+                            if CurrentResult is True:
                                 break
                         else:
                             if FirstLanguageCellCell == SecondLanguageCell:
-                                MethodFound = True
+                                CurrentResult = True
 
                                 break
 
-                    if MethodFound is True:
+                    if CurrentResult is True:
                         break
                 else:
                     if isinstance(SecondLanguageCell, list) is True:
                         for SecondLanguageCellCell in SecondLanguageCell:
                             if FirstLanguageCell == SecondLanguageCellCell:
-                                MethodFound = True
+                                CurrentResult = True
 
                                 break
 
-                        if MethodFound is True:
+                        if CurrentResult is True:
                             break
                     else:
                         if FirstLanguageCell == SecondLanguageCell:
-                            MethodFound = True
+                            CurrentResult = True
 
                             break
 
-            if MethodFound is True:
+            if CurrentResult is True:
                 break
 
-    FunctionResult = MethodFound
+    FunctionResult = CurrentResult
 
     return FunctionResult
